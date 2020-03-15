@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9AE5F64F241E2F35000F25B6 /* DiagnosticMessages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE5F64E241E2F35000F25B6 /* DiagnosticMessages.swift */; };
 		B435CF011D676B8300F3C75C /* SwiftGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B435CF001D676B8300F3C75C /* SwiftGenerator.swift */; };
 		B44ABF4F1D2709010012F25B /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44ABF4E1D2709010012F25B /* main.swift */; };
 		B44ABF561D27098A0012F25B /* Input.swift in Sources */ = {isa = PBXBuildFile; fileRef = B44ABF551D27098A0012F25B /* Input.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		9AE5F64E241E2F35000F25B6 /* DiagnosticMessages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticMessages.swift; sourceTree = "<group>"; };
 		B435CF001D676B8300F3C75C /* SwiftGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwiftGenerator.swift; sourceTree = "<group>"; };
 		B44ABF4B1D2709010012F25B /* bitsy-swift */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = "bitsy-swift"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B44ABF4E1D2709010012F25B /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				B44ABF5B1D270F580012F25B /* Token.swift */,
 				B44ABF5D1D270FFB0012F25B /* Tokenizer.swift */,
 				B44ABF5F1D275F760012F25B /* Parser.swift */,
+				9AE5F64E241E2F35000F25B6 /* DiagnosticMessages.swift */,
 				B4C99B281D418469003DDDD0 /* CodeGenerator.swift */,
 				B435CF001D676B8300F3C75C /* SwiftGenerator.swift */,
 				B46B12F11D3595C80037045F /* vendor */,
@@ -179,6 +182,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AE5F64F241E2F35000F25B6 /* DiagnosticMessages.swift in Sources */,
 				B4CEB1EF1D2EF99A0010AB4B /* Output.swift in Sources */,
 				B44ABF5C1D270F580012F25B /* Token.swift in Sources */,
 				B46B12F71D3596600037045F /* Option.swift in Sources */,

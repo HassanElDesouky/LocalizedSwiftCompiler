@@ -75,24 +75,6 @@ class Parser {
 }
 
 // MARK: Convenience Methods
-let DiagnosticMessagesJSON = """
-{
-  "diagnosticMessages": {
-    "firstMessageID": {
-      "languages": {
-        "en": "[Error] Expecting a different entry",
-        "fr": "[Erreur] Attendre une entrée différente"
-      }
-    }
-  }
-}
-"""
-class DiagnosticMessages {
-  static func diagnoseMessage(completion:((_ json: Data?) -> Void)) {
-    completion(Data(DiagnosticMessagesJSON.utf8))
-  }
-}
-
 private extension Parser {
   
   /**
@@ -125,11 +107,19 @@ private extension Parser {
    */
   @discardableResult
   func match(tokenType type: TokenType, andTerminate terminate: Bool = false) -> String {
+    
+    // Error ID
     let errorID = "firstMessageID"
+    
+    // Chose your language
     let local = "fr"
+    
+    // The finished error message
     var localizedErrorMessage = ""
+    
     guard currentToken.type == type else {
       
+      // Parse the JSON file
       DiagnosticMessages.diagnoseMessage { messageJson in
         guard let jMessage = messageJson else { return }
         do {
@@ -143,10 +133,14 @@ private extension Parser {
             }
           }
         } catch {
-          print("Het")
+          print(error.localizedDescription)
         }
       }
+      
+      // Printing the error message
       print(localizedErrorMessage)
+      
+      
       exit(EX_DATAERR)
     }
     
