@@ -1,3 +1,74 @@
+# LocalizedSwiftCompiler
+
+### Disclamer: I don't own the full project and it's originally created by [@apbendi](https://github.com/apbendi). I however, implemented the demo for localizing the diagnostic messages for my GSoC 2020 proposal.
+#### You can view the original repo [here](https://github.com/apbendi/Bitsy-Swift).
+
+## Implementation 
+For localizing the diagnostic messages as an initial approach I created a JSON file that contains messages and for every message it has its own ID and languages that it's translated to.
+
+JSON file:
+```
+{
+  "diagnosticMessages": {
+    "firstMessageID": {
+      "languages": {
+        "en": "[Error] Expecting a different entry",
+        "fr": "[Erreur] Attendre une entrée différente"
+      }
+    }
+  }
+}
+```
+
+I then parsed the JSON file with Swift:
+```
+    // Error ID
+    let errorID = "firstMessageID"
+    
+    // Chose your language
+    let local = "fr"
+    
+    // The finished error message
+    var localizedErrorMessage = ""
+    
+    guard currentToken.type == type else {
+      
+      // Parse the JSON file
+      DiagnosticMessages.diagnoseMessage { messageJson in
+        guard let jMessage = messageJson else { return }
+        do {
+          if let json = try JSONSerialization.jsonObject(with: jMessage, options: []) as? [String: Any] {
+            if let messages = json["diagnosticMessages"] as? [String: Any] {
+              if let localizedMessage = messages[errorID] as? [String: Any] {
+                if let foo = localizedMessage["languages"] as? [String: Any] {
+                  localizedErrorMessage = foo[local] as! String
+                }
+              }
+            }
+          }
+        } catch {
+          print(error.localizedDescription)
+        }
+      }
+      
+      // Printing the error message
+      print(localizedErrorMessage)
+      
+      
+      exit(EX_DATAERR)
+    }
+```
+
+## Testing
+To run the test file you will need to build the compiler first by `./build.sh` then you can run the test file by `./runbitsy samples/fail.bitsy`
+
+### Screenshot
+<img src="https://user-images.githubusercontent.com/13359795/76699349-3b67e600-66b5-11ea-9366-1bc3efa9134e.jpg">
+
+### You can change your language in bitsy-swift/Parser
+<br><br><br>
+
+# Original README.md
 # BitsySwift
 
 BitsySwift is a compiler for the [Bitsy](https://github.com/apbendi/bitsyspec)
